@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LED Remote</string>
+    <string name="hint">Point the top of the phone at the bulb</string>
+</resources>
