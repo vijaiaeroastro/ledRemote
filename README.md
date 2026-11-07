@@ -72,3 +72,6 @@ and command for every key you press.
 
 The app needs Android 8.0 or newer and a phone with an IR blaster. Every push is built by GitHub
 Actions, and the APK is attached to each run as the `ledRemote-debug-apk` artifact.
+
+Ready-made APKs are on the [Releases](../../releases) page. Publishing a GitHub release builds the
+APK and attaches it automatically.

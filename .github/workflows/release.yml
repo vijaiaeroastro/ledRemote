@@ -1,0 +1,32 @@
+name: Release APK
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v5
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
+
+      - name: Attach APK to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk "ledRemote-$TAG.apk"
+          gh release upload "$TAG" "ledRemote-$TAG.apk" --clobber
